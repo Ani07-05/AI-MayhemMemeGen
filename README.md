@@ -23,7 +23,9 @@ git clone https://github.com/Ani07-05/AI-MayhemMemeGen)
 
 3.Make sure to install the requirements
   a)You need to have stable defusion installed webui installed , yt video for that is here: https://youtu.be/rtUpIY9Opjs?si=-2XBgt6svooGVxmr
-  b)django and requests dependencies (run "pip install 'dependency-name'" in your terminal)
+  b) Next you need to install the custom Toonify Model link- https://civitai.com/models/36281/toonify?modelVersionId=244831 , 
+     download and move it to the models/Stable-Diffusion path(check the video for clearer instructions)
+  c)django and requests dependencies (run "pip install 'dependency-name'" in your terminal)
 
 4.Run the Django development server:
 python manage.py runserver
