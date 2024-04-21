@@ -1,2 +1,2 @@
 # AI-MayhemMemeGen
-AI driven meme generator 
+AI driven sticker generator 
