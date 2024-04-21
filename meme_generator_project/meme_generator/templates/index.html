@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI STICKER GENERATOR</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #000; /* Black background color */
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #fff; /* White color line border */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            color: #fff;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 48px;
+            padding: 20px;
+            border-radius: 5px;
+            animation: glitch 5s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(-2px, -2px); }
+            20% { transform: translate(2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
+
+        .button-30 {
+            appearance: none;
+            background-color: #FCFCFD;
+            border-radius: 4px;
+            border-width: 0;
+            box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            box-sizing: border-box;
+            color: #36395A;
+            cursor: pointer;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 18px;
+            height: 48px;
+            line-height: 1;
+            padding-left: 16px;
+            padding-right: 16px;
+            transition: box-shadow 0.15s, transform 0.15s;
+            user-select: none;
+            white-space: nowrap;
+            will-change: box-shadow, transform;
+            margin-top: 20px;
+        }
+
+        .button-30:focus {
+            box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+        }
+
+        .button-30:hover {
+            box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            transform: translateY(-2px);
+        }
+
+        .button-30:active {
+            box-shadow: #D6D6E7 0 3px 7px inset;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">AI STICKER GENERATOR</div>
+        <a href="/upload"><button class="button-30" role="button">Upload Image</button></a>
+    </div>
+</body>
+</html>
