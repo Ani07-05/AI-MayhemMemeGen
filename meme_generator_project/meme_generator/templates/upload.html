@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image - AI Meme Profile Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            margin: auto;
+            width: 50%;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+        }
+
+        .custom-file-upload {
+            color: #1da1f2;
+            border-bottom: 1px solid #1da1f2;
+            cursor: pointer;
+        }
+
+        #file-name {
+            color: #1da1f2;
+        }
+
+        button {
+            background-color: #FCFCFD;
+            color: #36395A;
+            border-radius: 4px;
+            border-width: 0;
+            box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-family: "JetBrains Mono",monospace;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            transition: box-shadow .15s,transform .15s;
+            white-space: nowrap;
+        }
+
+        button:focus {
+            box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+        }
+
+        button:hover {
+            box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            box-shadow: #D6D6E7 0 3px 7px inset;
+            transform: translateY(2px);
+        }
+
+        #loading-message {
+            display: none;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Upload Your Image</h2>
+        <form method="POST" enctype="multipart/form-data" id="upload-form">
+            {% csrf_token %}
+            <label for="image" class="custom-file-upload">Choose an image</label>
+            <input type="file" name="image" id="image" accept="image/*" required onchange="displayFileName()">
+            <br>
+            <span id="file-name"></span>
+            <br>
+            <button type="button" onclick="generateStickers()">Generate Stickers</button>
+        </form>
+        <div id="loading-message">Generating stickers...</div>
+    </main>
+
+    <footer>
+        <!-- Your footer content here -->
+    </footer>
+
+    <script>
+        function displayFileName() {
+            var input = document.getElementById('image');
+            var fileName = input.files[0].name;
+            document.getElementById('file-name').innerText = fileName;
+        }
+
+        function generateStickers() {
+            // Show loading message
+            document.getElementById('loading-message').style.display = 'block';
+
+            var form = document.getElementById('upload-form');
+            var formData = new FormData(form);
+            formData.append('prompt', 'brahmin anime theme different emotions'); // Add prompt data
+
+            fetch('/generate_stickers/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'stickers.zip'; // Set the filename for downloaded zip file
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+
+                // Hide loading message after download completes
+                document.getElementById('loading-message').style.display = 'none';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
