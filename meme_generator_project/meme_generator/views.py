@@ -23,7 +23,7 @@ def upload_image(request):
         image_path = "uploaded_image.jpg"
         payload = {
             "init_images": [image_path],
-            "prompt": "studying emojis",
+            "prompt": "different moods",
             "batch_size": 6,
         }
 
